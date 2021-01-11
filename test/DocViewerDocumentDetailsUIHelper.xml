@@ -1,0 +1,941 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b123"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="3"
+ schemaVersion="1052"
+ universal="password">
+    <Things>
+        <Thing
+         description="Services "
+         documentationContent=""
+         effectiveThingPackage="ConfiguredThing"
+         enabled="true"
+         homeMashup=""
+         identifier=""
+         lastModifiedDate="2020-12-14T14:56:12.363-05:00"
+         name="DocViewerDocumentDetailsUIHelper"
+         projectName="DocViewerForWindchill"
+         published="false"
+         tags=""
+         thingTemplate="GenericThing"
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read>
+                    <Principal
+                     isPermitted="true"
+                     name="DocViewer_EES_Manufacturing_Group"
+                     type="Group"></Principal>
+                </Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="DocViewer_EES_Group"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="DocViewer_EES_Manufacturing_Group"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="navigate_view_named_group"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite></PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="DocViewer_EES_Group"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="DocViewer_EES_Manufacturing_Group"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="navigate_view_named_group"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="navigate_view_named_group"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe></EventSubscribe>
+                </Permissions>
+            </RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Service that will get all attachments for a given document"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetAttachmentsDataTable">
+                        <ResultType
+                         aspect.dataShape="DocViewer-Attachments-DS"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="OdataConnector"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="oid"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="QUERY"
+                             description=""
+                             name="queryTable"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Service that will document details of given document using OID"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetDocumentDetailsByOID">
+                        <ResultType
+                         aspect.dataShape="DocViewer-DocDetails-DS"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="OdataConnector"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="oid"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Service that will return number of attachments"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetNumOfAttachments">
+                        <ResultType
+                         baseType="STRING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="DocViewer-Attachments-DS"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="foundAttachments"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Service that will get Primary Content Label for a given document"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetPrimaryContentLabel">
+                        <ResultType
+                         baseType="STRING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="docOid"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="OdataConnector"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Service that will get Primary Content URL for a given document"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetPrimaryContentLink">
+                        <ResultType
+                         baseType="HYPERLINK"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="docId"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="OdataConnector"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Service that will get Primary Representation for a given document"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetPrimaryRepresentation">
+                        <ResultType
+                         baseType="HYPERLINK"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="DocID"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="OdataConnector"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Service that will get Primary Content Image URL for a given document"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetThumbnailImageURL">
+                        <ResultType
+                         baseType="IMAGELINK"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="OdataConnector"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="oid"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Service that will get Full Name for a given User"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetUserFullName">
+                        <ResultType
+                         baseType="STRING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="name"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="OdataConnector"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Service that will get View in Windchill URL for a given document"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetViewInWindchillURL">
+                        <ResultType
+                         baseType="HYPERLINK"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="docId"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetAttachmentsDataTable">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        /*	
+                                            Created By: Patrick Savella & Sakshi Sikarwar
+                                            GetAttachmentsDataTable	
+                                            Description: Service that will get all attachments for a given document.
+                                            @return		Infotable DocViewer-Attachments-DS			
+                                        */
+                                        try{
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "DocViewer-Attachments-DS"
+                                        });
+                                        var attachments = null;
+                                        try{
+                                            attachments = Things[OdataConnector].GetAttachments_Route({
+                                                DocId: oid /* STRING */
+                                            });
+                                        }catch(e){
+                                            logger.error('Error getting attachments for oid: '+oid);
+                                        }
+                                        // get Representation
+                                        var reps = {};
+                                        var representationsFound = null;
+                                        try{
+                                        	representationsFound = Things[OdataConnector].GetRepresentations_Route({
+                                        		DocId: oid /* STRING */
+                                        	});
+                                        }catch(e){
+                                            logger.error("Error getting representation for oid: "+oid);
+                                        }
+                                        
+                                        // add to list of representation URL
+                                        for(var x = 0; x < representationsFound.value.length; x++){
+                                         	var aRep = representationsFound.value[x];
+                                            reps[aRep.Name] = aRep.AdditionalFiles[0].ID+"+"+aRep.ID;
+                                        }
+                                        // direct download Representation
+                                        
+                                        for(var i = 0; i < attachments.value.length; i++){
+                                         	var aAttachment = attachments.value[i];
+                                            var cat = aAttachment["Comments"];
+                                            var representation = '';
+                                            if(cat === "native"){
+                                                if(reps[aAttachment.Content.Label] === undefined){
+                                                	representation = "<p></p>";
+                                                }else{
+                                                    var splitdata = reps[aAttachment.Content.Label].split("+");
+                                                    try{
+                                        			var jsonResult = Things[OdataConnector].GetRepresentationsContent_Route({
+                                        						ContentItemId: splitdata[0], /* STRING */
+                                        						RepresentationId: splitdata[1] /* STRING */
+                                        					});
+                                            	        representation = "<a download href='"+jsonResult.Content.URL+"'target='_blank'><img src='"+Things["DocViewerUtilitiesHelper"].GetServerURL()+"/netmarkets/images/file_pdf.gif' alt=''></a>";
+                                                        }catch(e){
+                                            				logger.error('Error getting representation content for document oid:'+oid);
+                                        				}
+                                            	}
+                                            }
+                                            try{
+                                                var category = "";
+                                                if(cat!==null){
+                                                    category = cat.substring(0,1).toUpperCase()+cat.substring(1,aAttachment["Comments"].length);
+                                                }
+                                                result.AddRow({
+                                                    fileName:"<a download href='"+aAttachment.Content.URL+"' style='color:#0094c8' target='_blank'>" + aAttachment.Content.Label +"</a>",
+                                                    modifiedBy:aAttachment["ModifiedBy"],
+                                                    lastModified:Things["DocViewerUtilitiesHelper"].GetDate({
+                                        							stringDate: aAttachment["LastModified"] /* STRING */
+                                        							}),
+                                                    category:category, // Uppercase 1st letter... default all lower case
+                                                    representation: representation
+                                                });
+                                            }catch(e){
+                                                logger.error(e);
+                                            }
+                                        }
+                                        var result1 = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "DocViewer-Attachments-DS"
+                                        });
+                                        var result2 = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "DocViewer-Attachments-DS"
+                                        });
+                                        var query = {
+                                        	sorts:
+                                            [
+                                                { 
+                                                 fieldName : "fileName",
+                                                 isAscending : true
+                                                },
+                                        	],
+                                        	filters:
+                                        	{
+                                        		type: "EQ",
+                                                fieldName: "category",
+                                                value: "Native"
+                                        	}
+                                        };
+                                        result1 = Resources["InfoTableFunctions"].Query({
+                                        	t: result /* INFOTABLE */,
+                                        	query: query /* QUERY */
+                                        });
+                                        var query2 = {
+                                        	sorts:
+                                            [
+                                                { 
+                                                 fieldName : "category",
+                                                 isAscending : true
+                                                },
+                                                {
+                                                  fieldName : "fileName",
+                                                  isAscending : true
+                                                }
+                                        	],
+                                        	filters:
+                                        	{
+                                        		type: "NE",
+                                                fieldName: "category",
+                                                value: "Native"
+                                        	}
+                                        };
+                                        result2 = Resources["InfoTableFunctions"].Query({
+                                        	t: result /* INFOTABLE */,
+                                        	query: query2 /* QUERY */
+                                        });
+                                        result = Resources["InfoTableFunctions"].Union({
+                                                    t1: result1 /* INFOTABLE */,
+                                                    t2: result2 /* INFOTABLE */
+                                                });
+                                        
+                                        result = Resources["InfoTableFunctions"].Query({
+                                        	t: result /* INFOTABLE */,
+                                        	query: queryTable /* QUERY */
+                                        });
+                                        }catch(e){
+                                            logger.error("Error in GetAttachmentsDataTable:::::"+e);
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetDocumentDetailsByOID">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        /*	
+                                            Created By: Patrick Savella & Sakshi Sikarwar
+                                            GetDocumentDetailsByOID	
+                                            Description: Service that will document details of given document using OID.
+                                            @return		Infotable DocViewer-DocDetails-DS			
+                                        */
+                                        try{
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "DocViewer-DocDetails-DS"
+                                        });
+                                        var aDoc =  Things[OdataConnector].GetDocumentByOID_Route({
+                                        	ID: oid /* STRING */,
+                                        	$expand: "Context" /* STRING */
+                                        });
+                                        
+                                        result.AddRow({
+                                                    oid : aDoc.ID, // STRING [Primary Key]
+                                                    name : aDoc.Name, // STRING
+                                                    number : aDoc.Number, // STRING
+                                                    state : aDoc.State.Display, // STRING
+                                                    version : aDoc.Version, // STRING
+                                                    containerName : aDoc.Context.Name, // STRING
+                                                    docTypeName : aDoc.DocTypeName, // STRING
+                                                    lastModified : Things["DocViewerUtilitiesHelper"].GetDate({
+                                        							stringDate: aDoc.LastModified /* STRING */
+                                        							}), // STRING
+                                            		impactedSites : Things["DocViewerUtilitiesHelper"].GetDisplayValues({attribute: aDoc.ImpactedSites}), // STRING
+                                                	impactedFranchises : Things["DocViewerUtilitiesHelper"].GetDisplayValues({attribute: aDoc.ImpactedFranchises}), // STRING
+                                                    operatingCompany : Things["DocViewerUtilitiesHelper"].GetDisplayValues({attribute: aDoc.ImpactedOperatingCompanies}), // STRING
+                                            		functionalAreas : Things["DocViewerUtilitiesHelper"].GetDisplayValues({attribute: aDoc.ImpactedFunctionalAreas}),
+                                            		functionalOwnerGroup : aDoc.FunctionalOwner, // STRING
+                                                	functionalOwner : me.GetUserFullName({
+                                        				name: aDoc.FunctionalOwnerUser /* STRING */,
+                                        				OdataConnector: OdataConnector /* STRING */
+                                        			}), // STRING
+                                                    deviceCategorization : Things["DocViewerUtilitiesHelper"].GetDisplayValues({attribute: aDoc.DeviceCategorization}), // STRING
+                                            		processesSupported : Things["DocViewerUtilitiesHelper"].GetDisplayValues({attribute: aDoc.ProcessesSupported}), // STRING
+                                            		languages : Things["DocViewerUtilitiesHelper"].GetDisplayValues({attribute: aDoc.Languages}), // STRING
+                                            		platform : Things["DocViewerUtilitiesHelper"].GetDisplayValues({attribute: aDoc.Platform})
+                                                });
+                                        }catch(e){
+                                            logger.error("Error in GetDocumentDetailsByOID:::::::"+e);
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetNumOfAttachments">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        /*	
+                                            Created By: Patrick Savella
+                                            GetNumOfAttachments
+                                            Description: Service that will return number of attachments.
+                                            @return		String 			
+                                        */
+                                        
+                                        try{
+                                            
+                                         var tokenAttachment =  Things["DocViewerUtilitiesHelper"].GetLocalizedTokenValue({
+                                                 tokenName :"jnj.Attachment"
+                                            });
+                                         
+                                         var tokenAttachments =  Things["DocViewerUtilitiesHelper"].GetLocalizedTokenValue({
+                                                 tokenName :"jnj.Attachments"
+                                            });
+                                          
+                                         var tokenItems =  Things["DocViewerUtilitiesHelper"].GetLocalizedTokenValue({
+                                                 tokenName :"jnj.Items"
+                                            });
+                                        result = tokenAttachment+": 0"+ tokenItems;
+                                            if(foundAttachments !== undefined){
+                                        		result = tokenAttachments +": "+foundAttachments.getRowCount()+" "+ tokenItems;
+                                            }
+                                        logger.info("GetNumOfAttachments::::::result::::"+result);
+                                        }catch(e){
+                                            logger.error("Error in GetNumOfAttachments::::::::"+e);
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetPrimaryContentLabel">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        /*	
+                                            Created By: Sakshi Sikarwar
+                                            GetPrimaryContentLabel	
+                                            Description: Service that will get Primary Content Label for a given document.
+                                            @return		String			
+                                        */
+                                        result = "";
+                                        try{
+                                        // jsonResult: JSON
+                                        var jsonResult =  Things[OdataConnector].GetPrimaryContent_Route({
+                                        	DocId: docOid /* STRING */
+                                        });
+                                            result =jsonResult.Content.Label;
+                                            logger.info("GetPrimaryContentLabel:::::result::::"+result);
+                                        }catch(e){
+                                            logger.error("Error in GetPrimaryContentLabel:::::::"+e);
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetPrimaryContentLink">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        /*	
+                                            Created By: Sakshi Sikarwar
+                                            GetPrimaryContentLink	
+                                            Description: Service that will get Primary Content URL for a given document.
+                                            @return		HYPERLINK			
+                                        */
+                                        result = "";
+                                        try{
+                                        // jsonResult: JSON
+                                        var jsonResult =  Things[OdataConnector].GetPrimaryContent_Route({
+                                        	DocId: docId /* STRING */
+                                        });
+                                            result = jsonResult.Content.URL;
+                                            logger.info("GetPrimaryContentLink:::::::result:::::::"+result);
+                                        }catch(e){
+                                            logger.error("Error in GetPrimaryContentLink::::::::"+e);
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetPrimaryRepresentation">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        /*	
+                                            Created By: Sakshi Sikarwar
+                                            GetPrimaryRepresentation	
+                                            Description: Service that will get Primary Representation for a given document.
+                                            @return		HyperLink			
+                                        */
+                                        result = "";
+                                        try{
+                                        var representationsFound = Things[OdataConnector].GetRepresentations_Route({
+                                        	DocId: DocID /* STRING */
+                                        });
+                                        for(var i=0;i<representationsFound.value.length;i++){
+                                        	if(representationsFound.value[i].DefaultRepresentation.toString()==="true"){
+                                        		var representationContent = Things[OdataConnector].GetRepresentationsContent_Route({
+                                        			ContentItemId: representationsFound.value[i].AdditionalFiles[0].ID,
+                                        			RepresentationId: representationsFound.value[i].ID /* STRING */
+                                        		});
+                                        		result = representationContent.Content.URL;
+                                                break;
+                                        	}
+                                        }
+                                            logger.info("GetPrimaryRepresentation::::::result:::::"+result);
+                                        }catch(e){
+                                            logger.error("Error in GetPrimaryRepresentation::::::::::"+e);
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetThumbnailImageURL">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        /*	
+                                            Created By: Sakshi Sikarwar
+                                            GetThumbnailImageURL	
+                                            Description: Service that will get Primary Content Image URL for a given document.
+                                            @return		IMAGELINK			
+                                        */
+                                        result = "";
+                                        try{
+                                        var representationsFound = Things[OdataConnector].GetRepresentations_Route({
+                                        	DocId: oid /* STRING */
+                                        });
+                                        
+                                        for(var i=0;i<representationsFound.value.length;i++){
+                                        	if(representationsFound.value[i].DefaultRepresentation.toString()==="true"){
+                                                if(representationsFound.value[i].TwoDThumbnailURL!==null){
+                                        			result = representationsFound.value[i].TwoDThumbnailURL.URL;
+                                                    break;
+                                                }
+                                        	}else{
+                                                result = "";
+                                            }
+                                        }
+                                            logger.info("GetThumbnailImageURL:::::::result::::::"+result);
+                                        }catch(e){
+                                            logger.error("Error in GetThumbnailImageURL:::::::"+e);
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetUserFullName">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        /*	
+                                            Created By: Sakshi Sikarwar
+                                            GetUserFullName	
+                                            Description: Service that will get Full Name for a given User.
+                                            @return		String			
+                                        */
+                                        try{
+                                        result = "";
+                                        if(name!==""&&name!=undefined){
+                                        	filter = "contains(Name,'"+name+"')";
+                                        	var userFound =  Things[OdataConnector].GetUsers_Route({
+                                        		$filter: filter /* STRING */,
+                                        	});
+                                            if(userFound.value.length!==0){
+                                        		result = userFound.value[0].FullName;
+                                            }
+                                        }
+                                            logger.info("GetUserFullName:::::result:::::"+result);
+                                        }catch(e){
+                                            logger.error("Error in GetUserFullName::::::::"+e);
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetViewInWindchillURL">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        /*	
+                                            Created By: Sakshi Sikarwar
+                                            GetViewInWindchillURL	
+                                            Description: Service that will get View in Windchill URL for a given document.
+                                            @return		HYPERLINK			
+                                        */
+                                        try{
+                                        result = Things["DocViewerUtilitiesHelper"].GetServerURL()+"/app/#ptc1/tcomp/infoPage?oid="+docId;
+                                        logger.info("GetViewInWindchillURL:::::result::::"+result);
+                                        }catch(e){
+                                            logger.error("Error in GetViewInWindchillURL::::::"+e);
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ImplementedShapes></ImplementedShapes>
+            <ThingProperties></ThingProperties>
+        </Thing>
+    </Things>
+</Entities>
